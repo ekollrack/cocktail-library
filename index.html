@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AnnStrength. — A collection of favorite cocktails, made for sharing.">
+  <meta name="description" content="AnnStrength. — Good company. Generous pours. A collection of favorite cocktails made for sharing.">
   <title>AnnStrength. | Good company. Generous pours.</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,10 +19,9 @@
 <body>
   <header class="navbar">
     <a href="#" class="logo">✳ AnnStrength.</a>
-
     <nav>
       <a href="#collection">Collection</a>
-      <a href="#about">About</a>
+      <a href="#about">Our Story</a>
     </nav>
   </header>
 
@@ -30,17 +29,11 @@
     <section class="hero">
       <div class="hero-content">
         <p class="eyebrow">A LITTLE MORE SPIRIT.</p>
-
-        <h1>
-          Good company.<br>
-          <em>Generous pours.</em>
-        </h1>
-
+        <h1>Good company.<br><em>Generous pours.</em></h1>
         <p class="hero-description">
           Inspired by the art of a good host and the magic of a strong drink.
           A collection of favorite cocktails, made for sharing.
         </p>
-
         <a href="#collection" class="hero-link">
           Explore the collection <span>↓</span>
         </a>
@@ -58,8 +51,7 @@
           <p class="eyebrow">THE ANNSTRENGTH COLLECTION</p>
           <h2>Something to sip on.</h2>
         </div>
-
-        <span id="recipe-count">12 cocktails</span>
+        <span id="recipe-count">22 cocktails</span>
       </div>
 
       <div class="filters">
@@ -69,28 +61,55 @@
             type="search"
             id="search-input"
             placeholder="Search cocktails or ingredients..."
+            aria-label="Search cocktails or ingredients"
           >
         </div>
 
         <select id="spirit-filter" aria-label="Filter by spirit">
           <option value="All">All spirits</option>
+          <option value="Gin">Gin</option>
+          <option value="Vodka">Vodka</option>
+          <option value="Tequila">Tequila</option>
+          <option value="Rum">Rum</option>
+          <option value="Whisky">Whisky</option>
+          <option value="Bourbon">Bourbon</option>
+          <option value="Spritz">Spritz</option>
+        </select>
+
+        <select id="sort-filter" aria-label="Sort cocktails">
+          <option value="az">Name: A–Z</option>
+          <option value="za">Name: Z–A</option>
+          <option value="spirit">Spirit</option>
         </select>
       </div>
 
       <div class="recipe-grid" id="recipe-grid"></div>
 
       <p class="empty-message" id="empty-message" hidden>
-        No cocktails found. Try another search!
+        No cocktails found. Try another search or filter!
       </p>
     </section>
 
     <section class="about" id="about">
-      <p class="eyebrow">A NOTE ON ANNSTRENGTH.</p>
-      <h2>Made for the moments<br><em>worth pouring for.</em></h2>
-      <p>
-        A little collection inspired by good company, generous pours,
-        and the people who make gathering around a table feel special.
-      </p>
+      <div class="about-content">
+        <p class="eyebrow">A NOTE ON ANNSTRENGTH.</p>
+        <h2>Inspired by the<br><em>art of hosting.</em></h2>
+        <p>
+          AnnStrength. is inspired by my mom, whose love of hosting
+          and making a good drink has always made gatherings feel
+          a little more special. She's the kind of host who believes
+          in bringing people together, filling a glass generously,
+          and making everyone feel at home.
+        </p>
+        <p>
+          This collection is a little tribute to that spirit:
+          favorite cocktails, a few new discoveries, and plenty
+          of reasons to gather around the table.
+        </p>
+        <span class="about-signoff">Good company. Generous pours.</span>
+      </div>
+
+      <div class="about-decoration">✳</div>
     </section>
   </main>
 
@@ -100,13 +119,22 @@
   </footer>
 
   <div class="modal-backdrop" id="recipe-modal" hidden>
-    <div class="recipe-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="close-button" id="close-modal" aria-label="Close recipe">×</button>
+    <div
+      class="recipe-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <button
+        class="close-button"
+        id="close-modal"
+        aria-label="Close recipe"
+      >×</button>
 
       <p class="eyebrow" id="modal-meta"></p>
       <h2 id="modal-title"></h2>
-
       <p class="glassware" id="modal-glassware"></p>
+      <p class="recipe-notes" id="modal-notes" hidden></p>
 
       <h3>Ingredients</h3>
       <ul id="modal-ingredients"></ul>

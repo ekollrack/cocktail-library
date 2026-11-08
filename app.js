@@ -2,6 +2,7 @@
 const recipeGrid = document.getElementById("recipe-grid");
 const searchInput = document.getElementById("search-input");
 const spiritFilter = document.getElementById("spirit-filter");
+const sortFilter = document.getElementById("sort-filter");
 const recipeCount = document.getElementById("recipe-count");
 const emptyMessage = document.getElementById("empty-message");
 
@@ -11,26 +12,9 @@ const closeModal = document.getElementById("close-modal");
 const modalMeta = document.getElementById("modal-meta");
 const modalTitle = document.getElementById("modal-title");
 const modalGlassware = document.getElementById("modal-glassware");
+const modalNotes = document.getElementById("modal-notes");
 const modalIngredients = document.getElementById("modal-ingredients");
 const modalInstructions = document.getElementById("modal-instructions");
-
-// Add each spirit to the dropdown menu
-const spirits = [];
-
-for (const recipe of recipes) {
-  if (!spirits.includes(recipe.spirit)) {
-    spirits.push(recipe.spirit);
-  }
-}
-
-spirits.sort();
-
-for (const spirit of spirits) {
-  const option = document.createElement("option");
-  option.value = spirit;
-  option.textContent = spirit;
-  spiritFilter.appendChild(option);
-}
 
 // Display the cocktail cards
 function displayRecipes(filteredRecipes) {
@@ -66,7 +50,7 @@ function displayRecipes(filteredRecipes) {
     recipeGrid.appendChild(card);
   }
 
-  // Open a recipe when its button is clicked
+  // Add a click event to each recipe button
   const recipeButtons = document.querySelectorAll(".view-button");
 
   for (const button of recipeButtons) {
@@ -77,17 +61,23 @@ function displayRecipes(filteredRecipes) {
   }
 }
 
-// Search and filter cocktails
+// Search, filter, and sort recipes
 function filterRecipes() {
-  const searchText = searchInput.value.toLowerCase();
+  const searchText = searchInput.value.toLowerCase().trim();
   const selectedSpirit = spiritFilter.value;
+  const selectedSort = sortFilter.value;
 
-  const filteredRecipes = recipes.filter(function (recipe) {
+  let filteredRecipes = [];
+
+  // Find recipes that match the search and spirit filter
+  for (const recipe of recipes) {
     const searchableText = (
       recipe.name + " " +
       recipe.spirit + " " +
       recipe.flavor + " " +
-      recipe.ingredients.join(" ")
+      recipe.glassware + " " +
+      recipe.ingredients.join(" ") + " " +
+      (recipe.notes || "")
     ).toLowerCase();
 
     const matchesSearch = searchableText.includes(searchText);
@@ -95,8 +85,35 @@ function filterRecipes() {
     const matchesSpirit =
       selectedSpirit === "All" || recipe.spirit === selectedSpirit;
 
-    return matchesSearch && matchesSpirit;
-  });
+    if (matchesSearch && matchesSpirit) {
+      filteredRecipes.push(recipe);
+    }
+  }
+
+  // Sort matching recipes
+  if (selectedSort === "az") {
+    filteredRecipes.sort(function (a, b) {
+      return a.name.localeCompare(b.name);
+    });
+  }
+
+  if (selectedSort === "za") {
+    filteredRecipes.sort(function (a, b) {
+      return b.name.localeCompare(a.name);
+    });
+  }
+
+  if (selectedSort === "spirit") {
+    filteredRecipes.sort(function (a, b) {
+      const spiritComparison = a.spirit.localeCompare(b.spirit);
+
+      if (spiritComparison !== 0) {
+        return spiritComparison;
+      }
+
+      return a.name.localeCompare(b.name);
+    });
+  }
 
   displayRecipes(filteredRecipes);
 }
@@ -116,6 +133,16 @@ function openRecipe(recipeId) {
   modalGlassware.textContent = recipe.glassware;
   modalInstructions.textContent = recipe.instructions;
 
+  // Display an optional recipe note
+  if (recipe.notes) {
+    modalNotes.textContent = recipe.notes;
+    modalNotes.hidden = false;
+  } else {
+    modalNotes.textContent = "";
+    modalNotes.hidden = true;
+  }
+
+  // Add ingredients to the popup
   modalIngredients.innerHTML = "";
 
   for (const ingredient of recipe.ingredients) {
@@ -126,6 +153,8 @@ function openRecipe(recipeId) {
 
   recipeModal.hidden = false;
   document.body.style.overflow = "hidden";
+
+  closeModal.focus();
 }
 
 // Close the recipe popup
@@ -136,21 +165,24 @@ function hideRecipe() {
 
 closeModal.addEventListener("click", hideRecipe);
 
+// Close the popup when clicking outside the recipe
 recipeModal.addEventListener("click", function (event) {
   if (event.target === recipeModal) {
     hideRecipe();
   }
 });
 
+// Close the popup with the Escape key
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape" && !recipeModal.hidden) {
     hideRecipe();
   }
 });
 
-// Update results when searching or filtering
+// Update results whenever a control changes
 searchInput.addEventListener("input", filterRecipes);
 spiritFilter.addEventListener("change", filterRecipes);
+sortFilter.addEventListener("change", filterRecipes);
 
-// Show all cocktails when the page first loads
-displayRecipes(recipes);
+// Show all cocktails alphabetically when the page loads
+filterRecipes();

@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your personal cocktail recipe collection.">
+  <title>Cocktail Library</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="#" class="brand">✳ cocktail<span>library</span></a>
+
+    <nav>
+      <a href="#collection">Discover</a>
+      <a href="#ingredients">My ingredients</a>
+      <a href="#favorites">Favorites</a>
+    </nav>
+
+    <button class="button dark" id="add-recipe-top">+ Add recipe</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR PERSONAL DRINK DIRECTORY</p>
+        <h1>Find your<br><em>next favorite.</em></h1>
+        <p class="hero-description">
+          A little place to save the cocktails you love, keep track
+          of what goes in them, and find something good to make.
+        </p>
+        <a href="#collection" class="button dark">Explore recipes ↘</a>
+      </div>
+
+      <div class="hero-art">
+        <div class="sun"></div>
+        <div class="glass">
+          <div class="drink"></div>
+          <div class="garnish">✳</div>
+        </div>
+        <span class="art-note">SHAKE THINGS UP</span>
+      </div>
+    </section>
+
+    <section class="section" id="collection">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE COLLECTION</p>
+          <h2>Something to sip on.</h2>
+        </div>
+        <span id="recipe-count">0 recipes</span>
+      </div>
+
+      <div class="toolbar">
+        <input id="search-input" type="search"
+          placeholder="Search cocktails or ingredients...">
+
+        <select id="spirit-filter">
+          <option value="">All spirits</option>
+          <option>Tequila</option>
+          <option>Vodka</option>
+          <option>Gin</option>
+          <option>Rum</option>
+          <option>Whiskey</option>
+          <option>Brandy</option>
+          <option>Other</option>
+        </select>
+
+        <select id="flavor-filter">
+          <option value="">All flavors</option>
+          <option>Fruity</option>
+          <option>Citrusy</option>
+          <option>Herbal</option>
+          <option>Bitter</option>
+          <option>Sweet</option>
+          <option>Refreshing</option>
+        </select>
+
+        <select id="sort-filter">
+          <option value="name">Name A–Z</option>
+          <option value="newest">Recently added</option>
+        </select>
+      </div>
+
+      <div class="results-row">
+        <span id="results-label">Showing all cocktails</span>
+        <button class="text-button" id="clear-filters">Clear filters</button>
+      </div>
+
+      <div class="recipe-grid" id="recipe-grid"></div>
+
+      <div class="empty-state hidden" id="empty-state">
+        <h3>No cocktails found</h3>
+        <p>Try another search or clear your filters.</p>
+      </div>
+    </section>
+
+    <section class="pantry section" id="ingredients">
+      <div>
+        <p class="eyebrow">MAKE SOMETHING WITH WHAT YOU HAVE</p>
+        <h2>What's in<br>your cabinet?</h2>
+        <p>Choose the ingredients you have on hand and find cocktails you can make.</p>
+      </div>
+
+      <div class="pantry-panel">
+        <label for="pantry-input">Add an ingredient</label>
+        <div class="ingredient-entry">
+          <input id="pantry-input" placeholder="e.g. lime juice">
+          <button class="button dark" id="add-ingredient">Add</button>
+        </div>
+
+        <div class="ingredient-chips" id="pantry-chips">
+          <span class="muted-hint">Your ingredients will appear here.</span>
+        </div>
+
+        <button class="button outline" id="find-matches">
+          Find matching cocktails
+        </button>
+        <p id="match-note">We'll find recipes using your selected ingredients.</p>
+      </div>
+    </section>
+
+    <section class="favorites-strip section" id="favorites">
+      <div>
+        <p class="eyebrow">KEEP THE GOOD ONES CLOSE</p>
+        <h2>Your favorites.</h2>
+      </div>
+      <p>
+        Tap the heart on any recipe to save it.
+        <a href="#collection" id="show-favorites">Browse favorites →</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#" class="brand">✳ cocktail<span>library</span></a>
+    <span>A personal collection, one good drink at a time.</span>
+  </footer>
+
+  <dialog id="recipe-dialog">
+    <form id="recipe-form">
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow">GROW YOUR COLLECTION</p>
+          <h2>Add a cocktail</h2>
+        </div>
+        <button type="button" class="close-button" id="close-dialog">×</button>
+      </div>
+
+      <label>
+        Cocktail name
+        <input name="name" required placeholder="Passionfruit Margarita">
+      </label>
+
+      <div class="form-row">
+        <label>
+          Base spirit
+          <select name="spirit" required>
+            <option value="">Choose one</option>
+            <option>Tequila</option>
+            <option>Vodka</option>
+            <option>Gin</option>
+            <option>Rum</option>
+            <option>Whiskey</option>
+            <option>Brandy</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label>
+          Flavor
+          <select name="flavor">
+            <option value="">Choose one</option>
+            <option>Fruity</option>
+            <option>Citrusy</option>
+            <option>Herbal</option>
+            <option>Bitter</option>
+            <option>Sweet</option>
+            <option>Refreshing</option>
+          </select>
+        </label>
+      </div>
+
+      <label>
+        Ingredients
+        <span class="field-hint">One ingredient per line, including measurements.</span>
+        <textarea name="ingredients" required rows="5"
+          placeholder="2 oz tequila&#10;1 oz lime juice&#10;½ oz passionfruit liqueur"></textarea>
+      </label>
+
+      <label>
+        Instructions
+        <textarea name="instructions" rows="3"
+          placeholder="Shake with ice and strain into a chilled glass."></textarea>
+      </label>
+
+      <div class="form-row">
+        <label>
+          Glassware
+          <input name="glass" placeholder="Coupe">
+        </label>
+        <label>
+          Calories
+          <input name="calories" type="number" min="0" placeholder="150">
+        </label>
+      </div>
+
+      <label>
+        Notes
+        <textarea name="notes" rows="2" placeholder="Garnish, adjustments, etc."></textarea>
+      </label>
+
+      <p class="form-message">
+        Starter version: recipes are saved in this browser.
+      </p>
+
+      <button type="submit" class="button dark submit-button">
+        Save recipe
+      </button>
+    </form>
+  </dialog>
+
+  <dialog id="detail-dialog">
+    <div id="detail-content"></div>
+    <button class="button outline" id="close-detail">Back to collection</button>
+  </dialog>
+
+</body>
+</html>

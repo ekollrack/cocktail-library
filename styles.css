@@ -636,3 +636,23 @@ footer > span:last-child {
     padding: 30px 24px;
   }
 }
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .nav-links {
+    gap: 12px;
+    font-size: 0.85rem;
+  }
+
+  .hero {
+    padding-top: 50px;
+  }
+}

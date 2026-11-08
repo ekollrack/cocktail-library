@@ -656,3 +656,6 @@ footer > span:last-child {
     padding-top: 50px;
   }
 }
+.hero-decoration {
+  display: none;
+}

@@ -553,10 +553,12 @@ footer > span:last-child {
   .navbar {
     min-height: 65px;
     padding: 0 6%;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .navbar nav {
-    gap: 18px;
+    gap: 12px;
   }
 
   .navbar nav a {
@@ -564,12 +566,12 @@ footer > span:last-child {
   }
 
   .logo {
-    font-size: 20px;
+    font-size: 1.3rem;
   }
 
   .hero {
     min-height: 390px;
-    padding: 75px 8%;
+    padding: 50px 8% 75px;
   }
 
   .hero-decoration {
@@ -623,6 +625,10 @@ footer > span:last-child {
     font-size: 34px;
   }
 
+  .about-decoration {
+    display: none;
+  }
+
   footer {
     padding: 25px 6%;
     gap: 15px;
@@ -635,27 +641,4 @@ footer > span:last-child {
   .recipe-modal {
     padding: 30px 24px;
   }
-}
-
-@media (max-width: 600px) {
-  .navbar {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .logo {
-    font-size: 1.3rem;
-  }
-
-  .nav-links {
-    gap: 12px;
-    font-size: 0.85rem;
-  }
-
-  .hero {
-    padding-top: 50px;
-  }
-}
-.hero-decoration {
-  display: none;
 }

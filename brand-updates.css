@@ -1,0 +1,208 @@
+/* ========================================
+   ANNSTRENGTH — BRAND & VISUAL DETAILS
+======================================== */
+
+/* Playful but subtle page background */
+
+body {
+  background-color: #f8f2e9;
+  background-image:
+    radial-gradient(
+      ellipse at 5% 18%,
+      rgba(224, 168, 131, 0.32) 0%,
+      transparent 28%
+    ),
+    radial-gradient(
+      ellipse at 95% 35%,
+      rgba(190, 199, 163, 0.30) 0%,
+      transparent 27%
+    ),
+    radial-gradient(
+      ellipse at 12% 75%,
+      rgba(239, 215, 163, 0.32) 0%,
+      transparent 28%
+    ),
+    radial-gradient(
+      ellipse at 88% 90%,
+      rgba(211, 157, 132, 0.28) 0%,
+      transparent 30%
+    ),
+    linear-gradient(135deg, #faf5ed, #f3e8dc);
+  background-attachment: fixed;
+}
+
+/* Keep collection transparent so the page background shows */
+
+.collection {
+  background: transparent;
+}
+
+/* Logo icon */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.logo-mark {
+  display: block;
+  width: 29px;
+  height: 29px;
+  flex: 0 0 auto;
+}
+
+/* Hero cocktail illustration */
+
+.hero-decoration {
+  gap: 5px;
+  background: rgba(255, 253, 248, 0.18);
+}
+
+.decoration-glass {
+  display: block;
+  width: 82px;
+  height: 82px;
+}
+
+/* Recipe card illustrations */
+
+.recipe-image {
+  position: relative;
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 255, 255, 0.8),
+      transparent 58%
+    ),
+    #f0dfd1;
+}
+
+/* Alternating illustration backgrounds */
+
+.recipe-card:nth-child(4n + 2) .recipe-image {
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 255, 255, 0.8),
+      transparent 58%
+    ),
+    #e6e9dc;
+}
+
+.recipe-card:nth-child(4n + 3) .recipe-image {
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 255, 255, 0.8),
+      transparent 58%
+    ),
+    #f3e6c8;
+}
+
+.recipe-card:nth-child(4n + 4) .recipe-image {
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 255, 255, 0.8),
+      transparent 58%
+    ),
+    #ead9d0;
+}
+
+/* Cocktail glass artwork on each card */
+
+.recipe-image img {
+  display: block;
+  width: 72px;
+  height: 72px;
+  filter: drop-shadow(0 5px 5px rgba(91, 57, 39, 0.13));
+  transition: transform 0.25s ease;
+}
+
+.recipe-card:hover .recipe-image img {
+  transform: translateY(-4px) rotate(-4deg) scale(1.06);
+}
+
+/* Slightly more refined card borders and shadows */
+
+.recipe-card {
+  border: 1px solid rgba(164, 95, 69, 0.14);
+  background: rgba(255, 253, 248, 0.95);
+}
+
+.recipe-card:hover {
+  border-color: rgba(164, 95, 69, 0.28);
+}
+
+/* Search and filter details */
+
+.search-box,
+.filters select {
+  background-color: rgba(255, 253, 248, 0.92);
+}
+
+.search-box,
+.filters select {
+  border-radius: 9px;
+}
+
+/* Buttons */
+
+.view-button {
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.view-button:hover {
+  border-color: var(--accent-dark);
+}
+
+/* About section */
+
+.about {
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(255, 255, 255, 0.45),
+      transparent 30%
+    ),
+    linear-gradient(120deg, #e8e9dc, #f0e1d5);
+}
+
+/* Footer logo */
+
+footer .logo-mark {
+  width: 25px;
+  height: 25px;
+}
+
+/* Tablet */
+
+@media (max-width: 850px) {
+  .decoration-glass {
+    width: 68px;
+    height: 68px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .logo-mark {
+    width: 25px;
+    height: 25px;
+  }
+
+  .recipe-image img {
+    width: 61px;
+    height: 61px;
+  }
+
+  .recipe-card {
+    border-radius: 10px;
+  }
+}

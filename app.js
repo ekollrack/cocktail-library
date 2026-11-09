@@ -1,4 +1,3 @@
-
 const recipeGrid = document.getElementById("recipe-grid");
 const searchInput = document.getElementById("search-input");
 const spiritFilter = document.getElementById("spirit-filter");
@@ -34,13 +33,12 @@ function displayRecipes(filteredRecipes) {
 
     card.innerHTML = `
       <div class="recipe-image">
-        <span>${recipe.emoji}</span>
+        <img src="cocktail-glass.svg" alt="" aria-hidden="true">
       </div>
 
       <div class="recipe-info">
         <div class="recipe-meta">${recipe.spirit}</div>
         <h3>${recipe.name}</h3>
-        <p>${recipe.flavor}</p>
         <button class="view-button" data-id="${recipe.id}">
           View recipe →
         </button>
@@ -74,7 +72,6 @@ function filterRecipes() {
     const searchableText = (
       recipe.name + " " +
       recipe.spirit + " " +
-      recipe.flavor + " " +
       recipe.glassware + " " +
       recipe.ingredients.join(" ") + " " +
       (recipe.notes || "")
@@ -128,7 +125,7 @@ function openRecipe(recipeId) {
     return;
   }
 
-  modalMeta.textContent = recipe.spirit + " · " + recipe.flavor;
+  modalMeta.textContent = recipe.spirit;
   modalTitle.textContent = recipe.name;
   modalGlassware.textContent = recipe.glassware;
   modalInstructions.textContent = recipe.instructions;

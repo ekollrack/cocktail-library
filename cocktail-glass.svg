@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Glass bowl -->
+  <path
+    d="M13 19H87L57 53H43L13 19Z"
+    fill="#f1d9c8"
+    stroke="#9f5c43"
+    stroke-width="3.5"
+    stroke-linejoin="round"
+  />
+
+  <!-- Cocktail -->
+  <path
+    d="M23 25H77L55 49H45L23 25Z"
+    fill="#c47b59"
+  />
+
+  <!-- Glass rim -->
+  <path
+    d="M13 19H87"
+    stroke="#9f5c43"
+    stroke-width="3.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Garnish pick -->
+  <path
+    d="M32 13L70 31"
+    stroke="#9f5c43"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Garnish -->
+  <circle
+    cx="34"
+    cy="14"
+    r="6"
+    fill="#d9a56e"
+    stroke="#9f5c43"
+    stroke-width="2"
+  />
+
+  <!-- Stem -->
+  <path
+    d="M50 53V81"
+    stroke="#9f5c43"
+    stroke-width="3.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Base -->
+  <path
+    d="M34 86H66"
+    stroke="#9f5c43"
+    stroke-width="3.5"
+    stroke-linecap="round"
+  />
+</svg>
